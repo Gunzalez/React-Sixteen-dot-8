@@ -2,14 +2,16 @@ import React from 'react';
 import Ingredient from './Ingredient/Ingredient';
 import classes from './Burger.module.scss';
 
-const burger = (props) => {
+const burger = ({ingredients}) => {
+    const transformedIngredients = Object.keys(ingredients).map(ingredientKey => {
+        return [...Array(ingredients[ingredientKey])].map((_, i) => {
+            return <Ingredient key={ingredientKey + i} type={ingredientKey} />
+        })
+    });
     return (
         <div className={classes.Burger}>
             <Ingredient type={'bread-top'} />
-            <Ingredient type={'salad'} />
-            <Ingredient type={'cheese'} />
-            <Ingredient type={'meat'} />
-            <Ingredient type={'meat'} />
+            { transformedIngredients }
             <Ingredient type={'bread-bottom'} />
         </div>  
     );
