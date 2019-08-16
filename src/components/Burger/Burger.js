@@ -19,7 +19,7 @@ const burger = ({ ingredients }) => {
             <Ingredient type={'bread-top'} />
             { transformedIngredients }
             <Ingredient type={'bread-bottom'} />
-        </div>  
+        </div> 
     );
 }
  
