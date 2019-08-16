@@ -23,7 +23,7 @@ const buildControls = ({ addIngredients, removeIngredients, disabled, totalPrice
         )}
         <button
         disabled={!purchasable}
-        className={classes.orderButton}>ORDER NOW</button>
+        className={classes.OrderButton}>ORDER NOW</button>
     </div>
 );
  
