@@ -4,7 +4,7 @@ import Aux from '../../../hoc/Aux';
 
 import Button from '../../UI/Button/Button';
 
-const orderSummary = ({ ingredients, orderCancel, orderContinue }) => {
+const orderSummary = ({ ingredients, orderCancel, orderContinue, totalPrice }) => {
 
     return (
         <Aux>
@@ -21,6 +21,7 @@ const orderSummary = ({ ingredients, orderCancel, orderContinue }) => {
                     ) 
                 }
             </ul>
+            <p><strong>£{totalPrice.toFixed(2)}</strong></p>
             <p>Continue to checkout?</p>
             <Button clicked={orderCancel} btnType={'Danger'}>CANCEL</Button>
             <Button clicked={orderContinue} btnType={'Success'}>CONTINUE</Button>
