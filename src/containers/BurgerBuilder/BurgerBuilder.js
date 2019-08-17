@@ -4,6 +4,7 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import { tsImportEqualsDeclaration } from '@babel/types';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -21,11 +22,12 @@ class BurgerBuilder extends Component {
             meat: 0
         },
         totalPrice: 4,
-        purchasable: false
+        purchasable: false,
+        ordering: false
     }
 
     isPurchaseble = (ingredients) => {
-        const sum =Object.keys(ingredients).map(key => {
+        const sum = Object.keys(ingredients).map(key => {
             return ingredients[key];
         })
         .reduce((sum, el)=>{
@@ -34,6 +36,10 @@ class BurgerBuilder extends Component {
         this.setState({
             purchasable: sum > 0
         })
+    }
+
+    orderingHandler = () => {
+        this.setState({ ordering: true })
     }
 
     addIngredientsHandler = (type) => {
@@ -69,7 +75,7 @@ class BurgerBuilder extends Component {
     }
 
     render (){
-        const { ingredients, totalPrice, purchasable } = this.state;
+        const { ingredients, totalPrice, purchasable, ordering } = this.state;
         const disabledInfo = {
             ...ingredients
         }
@@ -78,7 +84,7 @@ class BurgerBuilder extends Component {
         }
         return (
             <Aux>
-                <Modal>
+                <Modal ordering={ordering}>
                     <OrderSummary ingredients={ingredients} />
                 </Modal>
                 <Burger ingredients={ingredients} price={totalPrice} />
@@ -88,6 +94,7 @@ class BurgerBuilder extends Component {
                     disabled={disabledInfo}
                     totalPrice={totalPrice}
                     purchasable={purchasable}
+                    ordering={this.orderingHandler}
                     />
             </Aux>
         )
