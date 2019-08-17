@@ -2,7 +2,9 @@ import React from 'react';
 
 import Aux from '../../../hoc/Aux';
 
-const orderSummary = ({ ingredients }) => {
+import Button from '../../UI/Button/Button';
+
+const orderSummary = ({ ingredients, orderCancel, orderContinue }) => {
 
     return (
         <Aux>
@@ -20,6 +22,8 @@ const orderSummary = ({ ingredients }) => {
                 }
             </ul>
             <p>Continue to checkout?</p>
+            <Button clicked={orderCancel} btnType={'Danger'}>CANCEL</Button>
+            <Button clicked={orderContinue} btnType={'Success'}>CONTINUE</Button>
         </Aux>
     );
 }
