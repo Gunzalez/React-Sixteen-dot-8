@@ -42,6 +42,10 @@ class BurgerBuilder extends Component {
         this.setState({ ordering: true })
     }
 
+    orderingCancelHandler = () => {
+        this.setState({ ordering: false })
+    }
+
     addIngredientsHandler = (type) => {
         const currentIngredientCnt = this.state.ingredients[type];
         const updatedIngredientCnt = currentIngredientCnt + 1;
@@ -84,7 +88,7 @@ class BurgerBuilder extends Component {
         }
         return (
             <Aux>
-                <Modal ordering={ordering}>
+                <Modal ordering={ordering} cancelModal={this.orderingCancelHandler}>
                     <OrderSummary ingredients={ingredients} />
                 </Modal>
                 <Burger ingredients={ingredients} price={totalPrice} />
