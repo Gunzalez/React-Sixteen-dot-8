@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Aux/Aux';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 
 import classes from './SideDrawer.module.scss';
@@ -9,7 +9,7 @@ import classes from './SideDrawer.module.scss';
 const sideDrawer = (props) => {
 
     const attachedClasses = [classes.SideDrawer];
-    
+
     if(props.show){
         attachedClasses.push(classes.Open);
     } else {
