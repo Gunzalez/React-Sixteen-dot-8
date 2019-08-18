@@ -8,7 +8,8 @@ import classes from './SideDrawer.module.scss';
 
 const sideDrawer = (props) => {
 
-    const attachedClasses = [classes.SideDrawer]
+    const attachedClasses = [classes.SideDrawer];
+    
     if(props.show){
         attachedClasses.push(classes.Open);
     } else {
