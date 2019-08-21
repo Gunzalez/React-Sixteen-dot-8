@@ -124,7 +124,7 @@ class BurgerBuilder extends Component {
         }
         return (
             <Aux>
-                <Modal ordering={ordering} cancelModal={this.orderingCancelHandler}>
+                <Modal show={ordering} cancelModal={this.orderingCancelHandler}>
                     {orderSummary}
                 </Modal>
                 <Burger ingredients={ingredients} price={totalPrice} />

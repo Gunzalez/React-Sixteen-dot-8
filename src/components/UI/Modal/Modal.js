@@ -7,9 +7,9 @@ import Aux from '../../../hoc/Aux/Aux';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
-    
+
     shouldComponentUpdate(props, state){
-        return props.ordering !== this.props.ordering || props.children !== this.props.children;
+        return props.show !== this.props.show || props.children !== this.props.children;
     }
 
     componentDidUpdate(){
@@ -17,14 +17,14 @@ class Modal extends Component {
     }
 
     render(){
-        const { ordering, cancelModal } = this.props;
+        const { show, cancelModal } = this.props;
         return (
             <Aux>
-                <Backdrop show={ ordering } cancelModal={cancelModal} />
+                <Backdrop show={ show } cancelModal={cancelModal} />
                 <div 
                     style={{
-                            transform: ordering ? 'translateY(0)' : 'translateY(-100vh)',
-                            opacity: ordering ? 1 : 0
+                            transform: show ? 'translateY(0)' : 'translateY(-100vh)',
+                            opacity: show ? 1 : 0
                         }}
                     className={classes.Modal}
                 >{this.props.children}</div>
