@@ -18,8 +18,8 @@ class Ingredient extends Component  {
                     </div>
                 );
                 break;
-            case 'salad':
-                ingredient = <div className={classes.salad}></div>;
+            case 'lettuce':
+                ingredient = <div className={classes.lettuce}></div>;
                 break;        
             case 'cheese':
                 ingredient = <div className={classes.cheese}></div>;

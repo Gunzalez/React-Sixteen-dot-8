@@ -9,7 +9,7 @@ import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 const INGREDIENT_PRICES = {
-    salad: 0.5,
+    lettuce: 0.5,
     cheese: 0.4,
     bacon: 1.3,
     meat: 0.7
@@ -27,6 +27,20 @@ class BurgerBuilder extends Component {
         purchasable: false,
         ordering: false,
         loading: false
+    }
+
+    componentDidMount() {
+        axios.get('https://react-my-burger-5dedd.firebaseio.com/orders/ingredients.json')
+            .then(respone => {
+                // console.log(respone.data)
+                const ingredients = respone.data;
+                this.setState({ ingredients }, ()=> {
+                    console.log(this.state.ingredients)
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     isPurchaseble = (ingredients) => {
