@@ -7,11 +7,7 @@ import Aux from '../../../hoc/Aux/Aux';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
-
-    state = {
-        monkeys: 'Monkeys!'
-    }
-
+    
     shouldComponentUpdate(props, state){
         return props.ordering !== this.props.ordering || props.children !== this.props.children;
     }
