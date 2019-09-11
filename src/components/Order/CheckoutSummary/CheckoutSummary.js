@@ -5,15 +5,15 @@ import Button from '../../UI/Button/Button';
 
 import classes from './CheckoutSummary.module.scss';
 
-const checkoutSummary = ({ ingredients }) => {
+const checkoutSummary = ({ ingredients, checkoutCancel, checkoutContinue }) => {
     return (
         <div className={classes.CheckoutSummary}>
             <h1>This is going to taste awesome!</h1>
             <div className={classes.Burger}>
                 <Burger ingredients={ingredients} />
             </div>
-            <Button clicked={()=>{ console.log('Danger')}} btnType={'Danger'}>CANCEL</Button>
-            <Button clicked={()=>{ console.log('Success!')}} btnType={'Success'}>CONTINUE</Button>
+            <Button clicked={checkoutCancel} btnType={'Danger'}>CANCEL</Button>
+            <Button clicked={checkoutContinue} btnType={'Success'}>CONTINUE</Button>
         </div>
      );
 }
