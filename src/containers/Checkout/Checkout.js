@@ -10,7 +10,11 @@ class Checkout extends Component {
             cheese: 1,
             bacon: 1
         }
-     }
+    }
+
+    componentDidMount(){
+        console.log(this.props.location.search)
+    }
 
     checkoutCancelHandler = () => {
         this.props.history.goBack();
