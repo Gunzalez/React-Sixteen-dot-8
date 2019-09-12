@@ -45,7 +45,10 @@ class Checkout extends Component {
                     ingredients={ingredients}
                     checkoutCancel={checkoutCancelHandler}
                     checkoutContinue={checkoutContinueHandler} />
-                <Route path={this.props.match.path + '/contact-data'} component={ContactData} />
+                <Route 
+                    path={this.props.match.path + '/contact-data'}
+                    render={() => (<ContactData ingredients={ingredients} />)}
+                    />
             </div>
          );
     }

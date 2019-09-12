@@ -12,11 +12,29 @@ class ContactData extends Component {
             street: '',
             postcode: ''
         }
-     }
+    }
+
+    componentDidMount(){
+    }
+
+    orderHandler = () => {
+        console.log(this.props);
+    }
+
+
+    formSubmitHandler = (e) => {
+        e.preventDefault();
+    }
+
+    
+
     render() { 
+
+        const { orderHandler, formSubmitHandler } = this;
+
         return ( 
             <div>
-                <form className={classes.ContactData}>
+                <form  onSubmit={formSubmitHandler} className={classes.ContactData}>
                     <h2>Enter your contact details</h2>
                     <div className={classes.row}>
                         <label htmlFor='name'>Name</label>
@@ -34,7 +52,7 @@ class ContactData extends Component {
                         <label htmlFor='postcode' className={classes.label}>Post code</label>
                         <input type='text' id='postcode' className={classes.formControl} placeholder='Enter your post code' />
                     </div>
-                    <Button btnType={'Success'}>BUY NOW</Button>
+                    <Button btnType={'Success'} clicked={orderHandler}>BUY NOW</Button>
                 </form>
             </div> 
         );
