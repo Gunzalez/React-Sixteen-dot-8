@@ -1,0 +1,38 @@
+
+.ContactData {
+    margin: 20px auto;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 2px 3px #cccccc;
+    border: 1px solid #eeeeee;
+    padding: 15px;
+    margin-bottom: 200px;
+    box-sizing: border-box;
+
+    label {
+        display: none;
+    }
+
+    .row {
+        text-align: left;
+        padding-bottom: 15px;
+    }
+
+    .formControl {
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: 0.25em;
+        border: 1px solid #cccccc;
+        font-size: 0.9em;
+        box-sizing: border-box;
+    }
+
+    @media (min-width: 600px) {
+        width: 360px;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+}
