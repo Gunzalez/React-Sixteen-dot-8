@@ -6,6 +6,8 @@ import Button from '../../../components/UI/Button/Button';
 
 import classes from './ContactData.module.scss';
 
+import Spinner from '../../../components/UI/Spinner/Spinner';
+
 class ContactData extends Component {
     state = { 
         name: '',
@@ -15,9 +17,6 @@ class ContactData extends Component {
             postcode: ''
         },
         loading: false
-    }
-
-    componentDidMount(){
     }
 
     orderHandler = () => {
@@ -52,30 +51,37 @@ class ContactData extends Component {
 
     render() { 
 
-        const { orderHandler, formSubmitHandler } = this;
+        const { state: { loading }, orderHandler, formSubmitHandler } = this;
+
+        let form = (
+            <form onSubmit={formSubmitHandler} className={classes.ContactData}>
+                <h2>Enter your contact details</h2>
+                <div className={classes.row}>
+                    <label htmlFor='name'>Name</label>
+                    <input type='text' id='name' className={classes.formControl} placeholder='Enter your name' />
+                </div>
+                <div className={classes.row}>
+                    <label htmlFor='email' className={classes.label}>Email address</label>
+                    <input type='email' id='email' className={classes.formControl} placeholder='Enter your email address' />
+                </div>
+                <div className={classes.row}>
+                    <label htmlFor='street' className={classes.label}>Street</label>
+                    <input type='text' id='street' className={classes.formControl} placeholder='Enter your street' />
+                </div>
+                <div className={classes.row}>
+                    <label htmlFor='postcode' className={classes.label}>Post code</label>
+                    <input type='text' id='postcode' className={classes.formControl} placeholder='Enter your post code' />
+                </div>
+                <Button btnType={'Success'} clicked={orderHandler}>BUY NOW</Button>
+            </form>
+        );
+        if(loading){
+            form = <Spinner />
+        }
 
         return ( 
             <div>
-                <form  onSubmit={formSubmitHandler} className={classes.ContactData}>
-                    <h2>Enter your contact details</h2>
-                    <div className={classes.row}>
-                        <label htmlFor='name'>Name</label>
-                        <input type='text' id='name' className={classes.formControl} placeholder='Enter your name' />
-                    </div>
-                    <div className={classes.row}>
-                        <label htmlFor='email' className={classes.label}>Email address</label>
-                        <input type='email' id='email' className={classes.formControl} placeholder='Enter your email address' />
-                    </div>
-                    <div className={classes.row}>
-                        <label htmlFor='street' className={classes.label}>Street</label>
-                        <input type='text' id='street' className={classes.formControl} placeholder='Enter your street' />
-                    </div>
-                    <div className={classes.row}>
-                        <label htmlFor='postcode' className={classes.label}>Post code</label>
-                        <input type='text' id='postcode' className={classes.formControl} placeholder='Enter your post code' />
-                    </div>
-                    <Button btnType={'Success'} clicked={orderHandler}>BUY NOW</Button>
-                </form>
+                { form }
             </div> 
         );
     }
