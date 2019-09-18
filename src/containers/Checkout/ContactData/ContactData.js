@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import axios from '../../../axios-orders';
+
 import Button from '../../../components/UI/Button/Button';
 
 import classes from './ContactData.module.scss';
@@ -11,22 +13,42 @@ class ContactData extends Component {
         address: {
             street: '',
             postcode: ''
-        }
+        },
+        loading: false
     }
 
     componentDidMount(){
     }
 
     orderHandler = () => {
-        console.log(this.props);
+        this.setState({ loading: true });
+        const order = {
+            ingredients: this.props.ingredients,
+            price: this.props.price,
+            customer: {
+                name: 'New Office Konibire',
+                address: {
+                    street: 'Hatton Gardens',
+                    flat: '39'
+                },
+                email: 'test@email.com'
+            },
+            delivery: 'fastest'            
+        }
+        axios.post('/orders.json', order)
+            .then(response => {
+                this.setState({ loading: false });
+                console.log(response)
+            })
+            .catch(err => {
+                this.setState({ loading: false });
+                console.log('Something went wrong', err);
+            });
     }
-
 
     formSubmitHandler = (e) => {
         e.preventDefault();
     }
-
-    
 
     render() { 
 
