@@ -6,6 +6,8 @@ import axios from '../../axios-orders';
 
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
+import Spinner from '../../components/UI/Spinner/Spinner';
+
 class Orders extends Component {
     state = { 
         orders: [],
@@ -15,25 +17,48 @@ class Orders extends Component {
     componentDidMount() {
         axios.get('/orders.json')
             .then(response => {
-                console.log(response.data)
                 const fetchedOrders = [];
                 for (let key in response.data){
                     fetchedOrders.push({
                         ...response.data[key],
-                        key
+                        id: key
                     })
                 }
+                fetchedOrders.reverse();
                 this.setState({ loading: false, orders: fetchedOrders })
             })
-            .catch( error => {
-
+            .catch( err => {
+                console.log('Something went wrong', err);
                 this.setState({ loading: false })
             })
     }
 
     render() { 
+
+        const { orders, loading } = this.state
+
+        let orderList = (
+            <div>
+                { orders.map(order => {
+                    const { id, ingredients, price } = order;
+                    return (
+                        <Order 
+                            key={id}
+                            ingredients={ingredients}
+                            price={price}/>
+                        )
+                    }
+                )}
+            </div>
+        );
+        if(loading){
+            orderList = <Spinner />
+        }
+
         return (
-            <Order />
+            <div>
+                { orderList }
+            </div>
         );
     }
 }

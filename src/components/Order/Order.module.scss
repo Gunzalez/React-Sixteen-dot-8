@@ -1,5 +1,19 @@
 .Order {
     width: 80%;
     border: 1px solid #cccccc;
-    padding: 20px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+}
+
+.Ingredient {
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 0 4px;
+    border: 1px solid #eeeeee;
+    transition: all 250ms;
+
+    &:hover {
+        background: #eeeeee;
+        border-color: #cccccc;
+    }
 }
