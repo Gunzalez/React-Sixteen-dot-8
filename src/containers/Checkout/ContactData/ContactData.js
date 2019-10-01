@@ -8,6 +8,9 @@ import classes from './ContactData.module.scss';
 
 import Spinner from '../../../components/UI/Spinner/Spinner';
 
+import Input from '../../../components/UI/Input/Input';
+
+
 class ContactData extends Component {
     state = { 
         name: '',
@@ -57,22 +60,10 @@ class ContactData extends Component {
         let form = (
             <form onSubmit={formSubmitHandler} className={classes.ContactData}>
                 <h2>Enter your contact details</h2>
-                <div className={classes.row}>
-                    <label htmlFor='name'>Name</label>
-                    <input type='text' id='name' className={classes.formControl} placeholder='Enter your name' />
-                </div>
-                <div className={classes.row}>
-                    <label htmlFor='email' className={classes.label}>Email address</label>
-                    <input type='email' id='email' className={classes.formControl} placeholder='Enter your email address' />
-                </div>
-                <div className={classes.row}>
-                    <label htmlFor='street' className={classes.label}>Street</label>
-                    <input type='text' id='street' className={classes.formControl} placeholder='Enter your street' />
-                </div>
-                <div className={classes.row}>
-                    <label htmlFor='postcode' className={classes.label}>Post code</label>
-                    <input type='text' id='postcode' className={classes.formControl} placeholder='Enter your post code' />
-                </div>
+                <Input inputtype={'input'} type='text' label='Name' id="name" placeholder='Enter your name' />
+                <Input inputtype={'input'} type='email' label='Email address' id="email" placeholder='Enter your email address' />
+                <Input inputtype={'input'} type='text' label='Street' id="street" placeholder='Enter your street' />
+                <Input inputtype={'input'} type='text' label='Postcode' id="postcode" placeholder='Enter you post code' />
                 <Button btnType={'Success'} clicked={orderHandler}>BUY NOW</Button>
             </form>
         );
