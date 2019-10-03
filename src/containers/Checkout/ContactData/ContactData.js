@@ -81,12 +81,17 @@ class ContactData extends Component {
     }
 
     onChangeHandler = (e) => {
-        console.log(e.target.value);
-        console.log(e.target.getAttribute('id'));
-        
-        // console.log(e, name);
-        // console.log(e);
-
+        const value = e.target.value;
+        const fieldName = e.target.getAttribute('id');
+        const updatedOrderForm = {
+            ...this.state.orderForm
+        }
+        const updatedInputDetails = {
+            ...updatedOrderForm[fieldName]
+        }
+        updatedInputDetails.value = value;
+        updatedOrderForm[fieldName] = updatedInputDetails;
+        this.setState({ orderForm: updatedOrderForm });
     }
 
     orderHandler = () => {
@@ -134,7 +139,8 @@ class ContactData extends Component {
                         key={input.id}
                         name={input.id}
                         config={input.config}
-                        changed={onChangeHandler} />
+                        changed={onChangeHandler}
+                        value={input.config.value} />
                 )}
                 <Button btnType={'Success'} clicked={orderHandler}>BUY NOW</Button>
             </form>

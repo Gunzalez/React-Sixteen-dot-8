@@ -13,7 +13,7 @@ const input = (props) => {
                 {...props.config.elementConfig}
                 id={props.name}
                 onChange={props.changed}
-                value={props.config.value} />;
+                value={props.value} />;
             break;
         case 'textarea':
             inputElement = <textarea 
@@ -21,7 +21,7 @@ const input = (props) => {
                 {...props.config.elementConfig} 
                 id={props.name}
                 onChange={props.changed}
-                value={props.config.value} />;
+                value={props.value} />;
             break;
         default:
             inputElement = <input 
@@ -29,7 +29,7 @@ const input = (props) => {
                 {...props.config.elementConfig} 
                 id={props.name}
                 onChange={props.changed}
-                value={props.config.value}  />
+                value={props.value}  />
     }
 
     return (  
