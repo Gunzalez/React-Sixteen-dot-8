@@ -23,6 +23,17 @@ const input = (props) => {
                 onChange={props.changed}
                 value={props.value} />;
             break;
+        case 'select':
+                inputElement = <select 
+                    className={classes.InputElement} 
+                    id={props.name}
+                    onChange={props.changed}
+                    value={props.value}>
+                    { props.config.elementConfig.options.map(option =>
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    )}
+                    </select>;
+                break;
         default:
             inputElement = <input 
                 className={classes.InputElement} 
