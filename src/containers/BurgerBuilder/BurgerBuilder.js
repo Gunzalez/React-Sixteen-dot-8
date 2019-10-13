@@ -54,7 +54,7 @@ class BurgerBuilder extends Component {
         for(let i in this.props.ingredients){
             queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ingredients[i]))
         }
-        queryParams.push('price=' + this.state.totalPrice.toFixed(2));
+        queryParams.push('price=' + this.props.totalPrice.toFixed(2));
         this.props.history.push({
             pathname: '/checkout',
             search: '?' + queryParams.join('&')
@@ -62,8 +62,14 @@ class BurgerBuilder extends Component {
     }
 
     render (){
-        const { ordering, loading, error } = this.state;
-        const { ingredients, totalPrice } = this.props;
+        const { state: { ordering, loading, error },
+                props: { ingredients, totalPrice, onIngredientAdded, onIngredientRemoved },
+                orderingHandler,
+                isPurchaseble,
+                orderingCancelHandler,
+                orderingContinueHandler
+            } = this
+
         const disabledInfo = {
             ...ingredients
         }
@@ -85,20 +91,20 @@ class BurgerBuilder extends Component {
                 <Aux>
                     <Burger ingredients={ingredients} price={totalPrice} />
                     <BuildControls
-                        addIngredients={this.props.onIngredientAdded}
-                        removeIngredients={this.props.onIngredientRemoved}
+                        addIngredients={onIngredientAdded}
+                        removeIngredients={onIngredientRemoved}
                         disabled={disabledInfo}
                         totalPrice={totalPrice}
-                        purchasable={this.isPurchaseble(this.props.ingredients)}
-                        ordering={this.orderingHandler}
+                        purchasable={isPurchaseble(ingredients)}
+                        ordering={orderingHandler}
                         />
                 </Aux>
             )
 
             orderSummary = <OrderSummary 
                 totalPrice={totalPrice}
-                orderCancel={this.orderingCancelHandler}
-                orderContinue={this.orderingContinueHandler}
+                orderCancel={orderingCancelHandler}
+                orderContinue={orderingContinueHandler}
                 ingredients={ingredients} />
         }
         
@@ -108,7 +114,7 @@ class BurgerBuilder extends Component {
 
         return (
             <Aux>
-                <Modal show={ordering} cancelModal={this.orderingCancelHandler}>
+                <Modal show={ordering} cancelModal={orderingCancelHandler}>
                     { orderSummary }
                 </Modal>
                 { burger }
